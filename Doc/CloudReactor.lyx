@@ -1,0 +1,698 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass paper
+\use_default_options true
+\begin_modules
+eqs-within-sections
+figs-within-sections
+tcolorbox
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine natbib
+\cite_engine_type authoryear
+\biblio_style plainnat
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2cm
+\topmargin 2cm
+\rightmargin 2cm
+\bottommargin 2cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Cloud Computing with reactor
+\end_layout
+
+\begin_layout Author
+P.
+ Pernot - 05/07/2018
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Initial steps
+\end_layout
+
+\begin_layout Standard
+Cf.
+ also 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://openstack.lal.in2p3.fr/tutoriel/tutorial/
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Create an account in project 
+\begin_inset Quotes eld
+\end_inset
+
+LCP
+\begin_inset Quotes erd
+\end_inset
+
+ here 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://openstack.lal.in2p3.fr/demande-de-compte-cloudvd/
+\end_layout
+
+\end_inset
+
+.
+ 
+\begin_inset Newline newline
+\end_inset
+
+The project administrator is 
+\begin_inset Quotes eld
+\end_inset
+
+pascal.pernot
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Get file 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://openstack.lal.in2p3.fr/files/2016/02/terena.pem
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+and store it in 
+\family typewriter
+$HOME/.certs/terena.pem
+\end_layout
+
+\begin_layout Enumerate
+Create user configuration file for Cloud@VD
+\family typewriter
+ os_lal.rc
+\family default
+ dans le répertoire
+\family typewriter
+ Script 
+\family default
+du projet
+\begin_inset Flex Color Box
+status open
+
+\begin_layout Plain Layout
+\begin_inset listings
+lstparams "basicstyle={\small\ttfamily}"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+export OS_USERNAME=***user*** 
+\end_layout
+
+\begin_layout Plain Layout
+
+export OS_PASSWORD=***pwd*** 
+\end_layout
+
+\begin_layout Plain Layout
+
+export OS_TENANT_NAME=LCP 
+\end_layout
+
+\begin_layout Plain Layout
+
+export OS_PROJECT_NAME=LCP  
+\end_layout
+
+\begin_layout Plain Layout
+
+export PS1='[
+\backslash
+u@
+\backslash
+h 
+\backslash
+W($OS_USERNAME @ OS_LAL)]
+\backslash
+$ ' 
+\end_layout
+
+\begin_layout Plain Layout
+
+export OS_AUTH_URL=https://keystone.lal.in2p3.fr:5000/v3 
+\end_layout
+
+\begin_layout Plain Layout
+
+export OS_IDENTITY_API_VERSION=3 
+\end_layout
+
+\begin_layout Plain Layout
+
+export OS_CACERT=$HOME/.certs/terena.pem 
+\end_layout
+
+\begin_layout Plain Layout
+
+export OS_USER_DOMAIN_NAME=u-psud 
+\end_layout
+
+\begin_layout Plain Layout
+
+export OS_PROJECT_DOMAIN_NAME=u-psud 
+\end_layout
+
+\begin_layout Plain Layout
+
+export OS_VOLUME_API_VERSION=2
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+and source it
+\begin_inset Flex Color Box
+status open
+
+\begin_layout Plain Layout
+\begin_inset listings
+lstparams "basicstyle={\small\ttfamily}"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+source Scripts/os_lal.rc
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Install the OpenStack client from here (requires 
+\family typewriter
+python
+\family default
+)
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://pypi.org/project/python-openstackclient/
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Test install with command
+\begin_inset Flex Color Box
+status open
+
+\begin_layout Plain Layout
+\begin_inset listings
+lstparams "basicstyle={\small\ttfamily}"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+openstack token issue
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Create a keypair from you public key
+\begin_inset Flex Color Box
+status open
+
+\begin_layout Plain Layout
+\begin_inset listings
+lstparams "basicstyle={\small\ttfamily}"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+openstack keypair create --public-key $HOME/.ssh/id_rsa.pub myKey
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+If you do not have public key, cf.
+ 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://openstack.lal.in2p3.fr/tutoriel/tutorial/
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage clearpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Configuration files
+\end_layout
+
+\begin_layout Standard
+All files stored in directory 
+\family typewriter
+Scripts
+\family default
+ of current 
+\family typewriter
+reactor
+\family default
+ project.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Note:
+\series default
+ if you mod these files, there should be no space around '='.
+\end_layout
+
+\begin_layout Subsection
+
+\family typewriter
+cl_config.rc
+\family default
+ 
+\end_layout
+
+\begin_layout Standard
+Computing configuration (nb.
+ runs, nb VMs...).
+ The parameters and constraints are:
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+CL_SIZE
+\family default
+ : number of VMs (max=8/9; I keep 1/2 for other projects)
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+NB_CORE
+\family default
+ : number of cores on each VM.
+\begin_inset Newline newline
+\end_inset
+
+The larger, the more difficult to create new instances of VM (keep below
+ 16).
+ 
+\begin_inset Newline newline
+\end_inset
+
+There is a hard constraint 
+\family typewriter
+CL_SIZE*NB_CORE 
+\begin_inset Formula $\le$
+\end_inset
+
+ 200
+\family default
+.
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+RUN_BY_CORE
+\family default
+ : integer chosen such as 
+\family typewriter
+MC_RUNS=RUN_BY_CORE*CL_SIZE*NB_CORE
+\family default
+ is as close as possible to desired nb.
+ of runs (
+\emph on
+ex.
+
+\emph default
+ 6 or 7 for 500 runs [6/7]*8*10=[480/540]).
+ 
+\begin_inset Newline newline
+\end_inset
+
+The idea is to run in parallel 
+\family typewriter
+NB_CORE
+\family default
+ MC loops of 
+\family typewriter
+RUN_BY_CORE
+\family default
+ steps on each VM.
+ Each run has a unique tag/number, and all process store the final results
+ in the VM's 
+\family typewriter
+MC_Outpu
+\family default
+t directory.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset Flex Color Box
+status open
+
+\begin_layout Plain Layout
+\noindent
+\begin_inset listings
+lstparams "basicstyle={\small\ttfamily}"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+export CL_SIZE=8     # Size of cluster 
+\end_layout
+
+\begin_layout Plain Layout
+
+export NB_CORE=10    # Nb cores on VM
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+RUN_BY_CORE=5   
+\end_layout
+
+\begin_layout Plain Layout
+
+# Nb runs, ensures divisibility by CL_SIZE and NB_CORE 
+\end_layout
+
+\begin_layout Plain Layout
+
+export MC_RUNS=$((RUN_BY_CORE*CL_SIZE*NB_CORE))
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+export VM_FLAVOR=os.$NB_CORE
+\end_layout
+
+\begin_layout Plain Layout
+
+export VM_IMAGE=titan_2018-07-04  # Image to be run (Debian + Fortran)
+\end_layout
+
+\begin_layout Plain Layout
+
+export VM_KEY=***myKey***         # Name of OpenStack keyPair 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Running the code
+\end_layout
+
+\begin_layout Standard
+Set of commands to start, monitor and terminate jobs.
+\end_layout
+
+\begin_layout Description
+Scripts/claunch.sh Create 
+\family typewriter
+titan_x (x in 1..CL_SIZE)
+\family default
+ VMs as defined in 
+\family typewriter
+Scripts/cl_config.rc
+\end_layout
+
+\begin_layout Description
+Scripts/crun.sh Copy datasets and start reactor jobs on VMs.
+ Each core has a defined range of tags to process.
+\end_layout
+
+\begin_layout Description
+Scripts/cmonitor.sh Shows the existing results files on all VMs
+\end_layout
+
+\begin_layout Description
+Scripts/cgather.sh Collects all results files and store them in local 
+\family typewriter
+MC_Output.
+\end_layout
+
+\begin_layout Description
+Scripts/cclean.sh Remove all files on VMs.
+ Useful only if VMs are to be used for other task(s).
+\end_layout
+
+\begin_layout Description
+Scripts/cdel.sh Destroy VMs.
+\end_layout
+
+\begin_layout Subsection
+Typical session
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Color Box
+status open
+
+\begin_layout Plain Layout
+\begin_inset listings
+lstparams "basicstyle={\small\ttfamily}"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+source Scripts/os_lal.rc
+\end_layout
+
+\begin_layout Plain Layout
+
+Scripts/claunch.sh
+\end_layout
+
+\begin_layout Plain Layout
+
+Scripts/crun.sh
+\end_layout
+
+\begin_layout Plain Layout
+
+...
+ Wait ...
+\end_layout
+
+\begin_layout Plain Layout
+
+Scripts/cmonitor.sh
+\end_layout
+
+\begin_layout Plain Layout
+
+...
+ Wait till all jobs done...
+\end_layout
+
+\begin_layout Plain Layout
+
+Scripts/cgather.sh
+\end_layout
+
+\begin_layout Plain Layout
+
+Scripts/cdel.sh
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Have fun !
+\end_layout
+
+\end_body
+\end_document
